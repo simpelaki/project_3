@@ -11,7 +11,8 @@ var infoArray = [];
 var airQuality = [];
 var waterPollution = [];
 var countryArray = [];
-
+var tripAdvisor = [];
+var ig = [];
 
 // Iterate through data for cities and its info. Then push to empty arrays
 data.forEach(row => {
@@ -21,13 +22,17 @@ data.forEach(row => {
     "Rank": row.Ranking,
     "Air Quality": parseFloat(row.Air_Quality).toFixed(2),
     "Water Pollution": parseFloat(row.Water_Pollution).toFixed(2),
-    "Wifi Speed": row["Avg_WiFi_Speed(Mbps)"]
+    "Wifi Speed (Mbps)": row["Avg_WiFi_Speed(Mbps)"],
+
   });
 
   cityArray.push(row.City);
   countryArray.push(row.Country);
   airQuality.push(row.Air_Quality);
   waterPollution.push(row.Water_Pollution);
+  tripAdvisor.push(row["No.TripAdvisor_Attractions"]);
+  ig.push(row["No.Instagram_#Photos"])
+
 });
 
 
@@ -67,7 +72,9 @@ function cityInfo(city) {
 
   let info = result[0];
 
-  let wifiSpeed = info["Wifi Speed"]
+  let wifiSpeed = ""; // NEED TO RESET WIFI SPEED TO 0 AT SOME POINT, CURRENTLY UPDATE IS BEHIND
+
+  wifiSpeed = info["Wifi Speed (Mbps)"]
 
   // Assign variable for selected element - Demographic Info Table
   let box = d3.select("#city-info");
@@ -91,87 +98,87 @@ function gauge(speed) {
   var options = {
     series: [speed],
     chart: {
-    height: 350,
-    type: 'radialBar',
-    toolbar: {
-      show: true
-    }
-  },
-  plotOptions: {
-    radialBar: {
-      startAngle: -135,
-      endAngle: 225,
-       hollow: {
-        margin: 0,
-        size: '70%',
-        background: '#fff',
-        image: undefined,
-        imageOffsetX: 0,
-        imageOffsetY: 0,
-        position: 'front',
-        dropShadow: {
-          enabled: true,
-          top: 3,
-          left: 0,
-          blur: 4,
-          opacity: 0.24
-        }
-      },
-      track: {
-        background: '#fff',
-        strokeWidth: '67%',
-        margin: 0, // margin is in pixels
-        dropShadow: {
-          enabled: true,
-          top: -3,
-          left: 0,
-          blur: 4,
-          opacity: 0.35
-        }
-      },
-  
-      dataLabels: {
-        show: true,
-        name: {
-          offsetY: -10,
-          show: true,
-          color: '#888',
-          fontSize: '17px'
+      height: 350,
+      type: 'radialBar',
+      toolbar: {
+        show: true
+      }
+    },
+    plotOptions: {
+      radialBar: {
+        startAngle: -135,
+        endAngle: 225,
+        hollow: {
+          margin: 0,
+          size: '70%',
+          background: '#fff',
+          image: undefined,
+          imageOffsetX: 0,
+          imageOffsetY: 0,
+          position: 'front',
+          dropShadow: {
+            enabled: true,
+            top: 3,
+            left: 0,
+            blur: 4,
+            opacity: 0.24
+          }
         },
-        value: {
-          formatter: function(val) {
-            return parseInt(val);
-          },
-          color: '#111',
-          fontSize: '36px',
+        track: {
+          background: '#fff',
+          strokeWidth: '67%',
+          margin: 0, // margin is in pixels
+          dropShadow: {
+            enabled: true,
+            top: -3,
+            left: 0,
+            blur: 4,
+            opacity: 0.35
+          }
+        },
+
+        dataLabels: {
           show: true,
+          name: {
+            offsetY: -10,
+            show: true,
+            color: '#888',
+            fontSize: '17px'
+          },
+          value: {
+            formatter: function (val) {
+              return parseInt(val);
+            },
+            color: '#111',
+            fontSize: '36px',
+            show: true,
+          }
         }
       }
-    }
-  },
-  fill: {
-    type: 'gradient',
-    gradient: {
-      shade: 'dark',
-      type: 'horizontal',
-      shadeIntensity: 0.5,
-      gradientToColors: ['#ABE5A1'],
-      inverseColors: true,
-      opacityFrom: 1,
-      opacityTo: 1,
-      stops: [0, 100]
-    }
-  },
-  stroke: {
-    lineCap: 'round'
-  },
-  labels: ['Wifi Speed'],
+    },
+    fill: {
+      type: 'gradient',
+      gradient: {
+        shade: 'dark',
+        type: 'horizontal',
+        shadeIntensity: 0.5,
+        gradientToColors: ['#ABE5A1'],
+        inverseColors: true,
+        opacityFrom: 1,
+        opacityTo: 1,
+        stops: [0, 100]
+      }
+    },
+    stroke: {
+      lineCap: 'round'
+    },
+    labels: ['Wifi Speed'],
   };
 
   // Plot gauge with options and then update chart to reset series to 0
   var chart = new ApexCharts(document.querySelector("#gauge"), options);
   chart.updateOptions({
-    series:[],
+    series: [],
   });
 
   // Render the chart 
@@ -179,28 +186,71 @@ function gauge(speed) {
 };
 
 
+// Set trace1 and trace2 for bar chart
+var trace1 = {
+  x: cityArray,
+  y: tripAdvisor,
+  name: "TripAdivor Attractions",
+  type: "bar",
+};
+
+var trace2 = {
+  x: cityArray,
+  y: ig,
+  name: "Instagram # Photos",
+  type: "bar",
+};
+
+// Set data for bar chart
+var barData = [trace1, trace2];
+
+// Set layout for bar chart
+let barLayout = {
+  margin: { t: 75, l: 75, b: 150 },
+  xaxis: { title: "Cities" },
+  barmode: "group"
+};
+
+// Plot bar chart with barData and barLayout
+Plotly.newPlot("bar", barData, barLayout);
+
+
 // Set layout for bubble chart
 let bubbleLayout = {
-  title: "Air Quality by Cities",
-  margin: { t: 0 },
   hovermode: "closest",
   xaxis: { title: "Cities" },
-  margin: { t: 30 }
+  margin: { t: 50, l: 75, b: 125 }
+};
+
+// Set trace3 and trace4 for bubble chart
+var trace3 = {
+  x: cityArray,
+  y: airQuality,
+  name: "Air Quality",
+  type: "bubble",
+  mode: "markers",
+  marker: {
+    size: airQuality,
+    color: airQuality,
+    colorscale: "Earth"
+  }
+};
+
+var trace4 = {
+  x: cityArray,
+  y: waterPollution,
+  name: "Water Pollution",
+  type: "bubble",
+  mode: "markers",
+  marker: {
+    size: waterPollution,
+    color: waterPollution,
+    colorscale: "Earth"
+  }
 };
 
 // Set data for bubble chart
-let bubbleData = [
-  {
-    x: cityArray,
-    y: airQuality,
-    mode: "markers",
-    marker: {
-      size: airQuality,
-      color: airQuality,
-      colorscale: "Earth"
-    }
-  }
-];
+let bubbleData = [trace3, trace4];
 
 // Plot bubble chart with bubbleData and bubbleLayout
 Plotly.newPlot("bubble", bubbleData, bubbleLayout);
