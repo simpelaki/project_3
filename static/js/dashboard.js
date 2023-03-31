@@ -7,7 +7,7 @@ var cityArray = [];
 
 
 // Create empty array to hold the city's info to be displayed in box
-var infoArray = []; // Sort by city name alphabetically
+var infoArray = []; 
 var airQuality = [];
 var waterPollution = [];
 var countryArray = [];
@@ -58,8 +58,8 @@ for (let i = 0; i < cityArray.length; i++) {
 cityInfo(cityArray[0]);
 
 
-// Create a function called optionChanged for when new value is selected/clicked in dropdown menu
-// Call the functions to display the new city info and plots
+/* Create a function called optionChanged for when new value is selected/clicked in dropdown menu
+Call the functions to display the new city info and plots*/
 function optionChanged(city) {
   cityInfo(city);
 };
@@ -74,16 +74,16 @@ function cityInfo(city) {
 
   let wifiSpeed = info["Wifi Speed (Mbps)"]
 
-  // Assign variable for selected element - Demographic Info Table
+  // Assign variable for selected element - city-info box
   let box = d3.select("#city-info");
 
-  // Clear the data in the table
+  // Clear the data in the box
   box.html("");
 
-  // Call gauge function to create gauge
+  // Call gauge function to create gauge chart
   gauge(wifiSpeed);
 
-  // Iterate through the result variable and append each key and property to city info table
+  // Iterate through the info variable and append each key and property to city info box
   for (key in info) {
     box.append("h4").text(`${key}: ${info[key]}`);
   };
@@ -173,7 +173,7 @@ function gauge(speed) {
     labels: ['Wifi Speed'],
   };
 
-  // Plot gauge with options and then update chart to reset series to 0
+  // Plot gauge with options and then update options to reset series to 0
   var chart = new ApexCharts(document.querySelector("#gauge"), options);
   chart.updateOptions({
     series: [],
