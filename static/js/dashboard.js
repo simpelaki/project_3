@@ -72,9 +72,7 @@ function cityInfo(city) {
 
   let info = result[0];
 
-  let wifiSpeed = ""; // NEED TO RESET WIFI SPEED TO 0 AT SOME POINT, CURRENTLY UPDATE IS BEHIND
-
-  wifiSpeed = info["Wifi Speed (Mbps)"]
+  let wifiSpeed = info["Wifi Speed (Mbps)"]
 
   // Assign variable for selected element - Demographic Info Table
   let box = d3.select("#city-info");
@@ -98,7 +96,7 @@ function gauge(speed) {
   var options = {
     series: [speed],
     chart: {
-      height: 350,
+      height: 500,
       type: 'radialBar',
       toolbar: {
         show: true

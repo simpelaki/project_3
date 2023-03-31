@@ -13,6 +13,15 @@ h1 {
   font-family: cursive;
 }
 
+.well {
+  background-color: paleturquoise;
+}
+
+.panel-primary>.panelheading {
+  background-color: teal;
+  border-color: teal
+
+}
 /* html {
   font-size: 10px;
   font-family: 'Open Sans', sans-serif;
