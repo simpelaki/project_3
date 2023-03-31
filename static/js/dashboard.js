@@ -245,7 +245,7 @@ var trace4 = {
   marker: {
     size: waterPollution,
     color: waterPollution,
-    colorscale: "Earth"
+    colorscale: "Cividis"
   }
 };
 
