@@ -192,6 +192,7 @@ var trace1 = {
   y: tripAdvisor,
   name: "TripAdivor Attractions",
   type: "bar",
+  marker: {color: "orchid"}
 };
 
 var trace2 = {
@@ -199,6 +200,7 @@ var trace2 = {
   y: ig,
   name: "Instagram # Photos",
   type: "bar",
+  marker: {color: "teal"}
 };
 
 // Set data for bar chart
@@ -232,7 +234,7 @@ var trace3 = {
   marker: {
     size: airQuality,
     color: airQuality,
-    colorscale: "Earth"
+    colorscale: "Sunset"
   }
 };
 
