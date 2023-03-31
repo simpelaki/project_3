@@ -7,7 +7,7 @@ var cityArray = [];
 
 
 // Create empty array to hold the city's info to be displayed in box
-var infoArray = [];
+var infoArray = []; // Sort by city name alphabetically
 var airQuality = [];
 var waterPollution = [];
 var countryArray = [];
