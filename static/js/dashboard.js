@@ -240,7 +240,7 @@ var trace3 = {
 var trace4 = {
   x: cityArray10,
   y: ig10,
-  name: "Instagram - Top Ten",
+  name: "Instagram - Top 10",
   type: "bar",
   marker: {color: "green"}
 };
@@ -277,7 +277,6 @@ var trace5 = {
   mode: "markers",
   marker: {
     size: airQuality,
-    color: airQuality,
     colorscale: "Sunset"
   }
 };
@@ -297,7 +296,7 @@ var trace6 = {
 var trace7 = {
   x: cityArray10,
   y: airQuality10,
-  name: "Air Quality - Top Ten",
+  name: "Air Quality - Top 10",
   type: "bubble",
   mode: "markers",
   marker: {
@@ -309,7 +308,7 @@ var trace7 = {
 var trace8 = {
   x: cityArray10,
   y: waterPollution10,
-  name: "Water Pollution - Top Ten",
+  name: "Water Pollution - Top 10",
   type: "bubble",
   mode: "markers",
   marker: {
