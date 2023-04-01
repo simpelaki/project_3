@@ -1,7 +1,7 @@
 <h1> Project 3: Best Cities for Workation
 <br>
 <h2>Project Description</h2>
-  This project anaylzes the best cities for a workation. This is determined by comparing expenses and amenities the cities have. 
+  This project analyzes the best cities for a workation. This is determined by comparing expenses and amenities the cities have. 
   
   The data was obtained from https://www.kaggle.com/datasets/prasertk/the-best-cities-for-a-workation?resource=download and https://www.kaggle.com/datasets/cityapiio/world-cities-air-quality-and-water-polution
   <br>
