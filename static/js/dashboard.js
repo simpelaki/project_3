@@ -7,12 +7,13 @@ var cityArray = [];
 
 
 // Create empty array to hold the city's info to be displayed in box
-var infoArray = []; // Sort by city name alphabetically
+var infoArray = []; 
 var airQuality = [];
 var waterPollution = [];
 var countryArray = [];
 var tripAdvisor = [];
 var ig = [];
+
 
 // Iterate through data for cities and its info. Then push to empty arrays
 data.forEach(row => {
@@ -23,7 +24,7 @@ data.forEach(row => {
     "Air Quality": parseFloat(row.Air_Quality).toFixed(2),
     "Water Pollution": parseFloat(row.Water_Pollution).toFixed(2),
     "Wifi Speed (Mbps)": row["Avg_WiFi_Speed(Mbps)"],
-
+    
   });
 
   cityArray.push(row.City);
@@ -31,7 +32,7 @@ data.forEach(row => {
   airQuality.push(row.Air_Quality);
   waterPollution.push(row.Water_Pollution);
   tripAdvisor.push(row["No.TripAdvisor_Attractions"]);
-  ig.push(row["No.Instagram_#Photos"])
+  ig.push(row["No.Instagram_#Photos"]);
 
 });
 
@@ -58,8 +59,8 @@ for (let i = 0; i < cityArray.length; i++) {
 cityInfo(cityArray[0]);
 
 
-// Create a function called optionChanged for when new value is selected/clicked in dropdown menu
-// Call the functions to display the new city info and plots
+/* Create a function called optionChanged for when new value is selected/clicked in dropdown menu
+Call the functions to display the new city info and plots*/
 function optionChanged(city) {
   cityInfo(city);
 };
@@ -74,16 +75,16 @@ function cityInfo(city) {
 
   let wifiSpeed = info["Wifi Speed (Mbps)"]
 
-  // Assign variable for selected element - Demographic Info Table
+  // Assign variable for selected element - city-info box
   let box = d3.select("#city-info");
 
-  // Clear the data in the table
+  // Clear the data in the box
   box.html("");
 
-  // Call gauge function to create gauge
+  // Call gauge function to create gauge chart
   gauge(wifiSpeed);
 
-  // Iterate through the result variable and append each key and property to city info table
+  // Iterate through the info variable and append each key and property to city info box
   for (key in info) {
     box.append("h4").text(`${key}: ${info[key]}`);
   };
@@ -173,7 +174,7 @@ function gauge(speed) {
     labels: ['Wifi Speed'],
   };
 
-  // Plot gauge with options and then update chart to reset series to 0
+  // Plot gauge with options and then update options to reset series to 0
   var chart = new ApexCharts(document.querySelector("#gauge"), options);
   chart.updateOptions({
     series: [],
@@ -184,11 +185,38 @@ function gauge(speed) {
 };
 
 
-// Set trace1 and trace2 for bar chart
+// Assign variables for empty lists to hold Top Ten Cities values
+var infoArray10 = [];
+var cityArray10 = [];
+var countryArray10 = [];
+var airQuality10 = [];
+var waterPollution10 = [];
+var tripAdvisor10 = [];
+var ig10 = [];
+
+// Iterate through data to extract only the cities that ranked up to 10
+data.slice(0,11).forEach(row =>{
+  infoArray10.push(row);
+  }); 
+
+infoArray10.forEach(row =>{
+  airQuality10.push(row.Air_Quality);
+  cityArray10.push(row.City);
+  countryArray10.push(row.Country);
+  waterPollution10.push(row.Water_Pollution);
+  tripAdvisor10.push(row["No.TripAdvisor_Attractions"]);
+  ig10.push(row["No.Instagram_#Photos"]);
+
+});
+
+// Display array in console log to validate
+console.log(infoArray10);
+
+// Set traces 1-4 for bar chart
 var trace1 = {
   x: cityArray,
   y: tripAdvisor,
-  name: "TripAdivor Attractions",
+  name: "TripAdvisor Attractions - All",
   type: "bar",
   marker: {color: "orchid"}
 };
@@ -196,17 +224,34 @@ var trace1 = {
 var trace2 = {
   x: cityArray,
   y: ig,
-  name: "Instagram # Photos",
+  name: "Instagram # Photos - All",
   type: "bar",
   marker: {color: "teal"}
 };
 
+var trace3 = {
+  x: cityArray10,
+  y: tripAdvisor10,
+  name: "TripAdvisor - Top 10",
+  type: "bar",
+  marker: {color: "red"}
+};
+
+var trace4 = {
+  x: cityArray10,
+  y: ig10,
+  name: "Instagram - Top Ten",
+  type: "bar",
+  marker: {color: "green"}
+};
+
 // Set data for bar chart
-var barData = [trace1, trace2];
+var barData = [trace1, trace2, trace3, trace4];
 
 // Set layout for bar chart
 let barLayout = {
   margin: { t: 75, l: 75, b: 150 },
+  title: "TripAdvisor Attractions & Instagram # Photos",
   xaxis: { title: "Cities" },
   barmode: "group"
 };
@@ -219,14 +264,15 @@ Plotly.newPlot("bar", barData, barLayout);
 let bubbleLayout = {
   hovermode: "closest",
   xaxis: { title: "Cities" },
+  title: "Air Quality & Water Pollution",
   margin: { t: 50, l: 75, b: 125 }
 };
 
-// Set trace3 and trace4 for bubble chart
-var trace3 = {
+// Set traces 5-8 for bubble chart
+var trace5 = {
   x: cityArray,
   y: airQuality,
-  name: "Air Quality",
+  name: "Air Quality - All",
   type: "bubble",
   mode: "markers",
   marker: {
@@ -236,22 +282,44 @@ var trace3 = {
   }
 };
 
-var trace4 = {
+var trace6 = {
   x: cityArray,
   y: waterPollution,
-  name: "Water Pollution",
+  name: "Water Pollution - All",
   type: "bubble",
   mode: "markers",
   marker: {
     size: waterPollution,
-    color: waterPollution,
-    colorscale: "Earth"
+    colorscale: "Viridis"
+  }
+};
+
+var trace7 = {
+  x: cityArray10,
+  y: airQuality10,
+  name: "Air Quality - Top Ten",
+  type: "bubble",
+  mode: "markers",
+  marker: {
+    size: airQuality,
+    colorscale: "Blues"
+  }
+};
+
+var trace8 = {
+  x: cityArray10,
+  y: waterPollution10,
+  name: "Water Pollution - Top Ten",
+  type: "bubble",
+  mode: "markers",
+  marker: {
+    size: waterPollution,
+    colorscale: "Darkmint"
   }
 };
 
 // Set data for bubble chart
-let bubbleData = [trace3, trace4];
+let bubbleData = [trace5, trace6, trace7, trace8];
 
 // Plot bubble chart with bubbleData and bubbleLayout
 Plotly.newPlot("bubble", bubbleData, bubbleLayout);
-
