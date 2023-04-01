@@ -1,3 +1,7 @@
+// Pop up message at page load
+alert("Welcome to our project page on Best Cities for Workation!!!");
+
+
 // Display data in console
 console.log("Data:", data);
 
