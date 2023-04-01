@@ -322,3 +322,4 @@ let bubbleData = [trace5, trace6, trace7, trace8];
 
 // Plot bubble chart with bubbleData and bubbleLayout
 Plotly.newPlot("bubble", bubbleData, bubbleLayout);
+
