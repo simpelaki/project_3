@@ -1,0 +1,23 @@
+body {
+  padding: 0;
+  margin: 0;
+  background-color: lightseagreen;
+}
+
+.col-md-12 {
+  background-color: paleturquoise;
+  border-color: cornflowerblue;
+}
+
+h1 {
+  font-family: cursive;
+}
+
+.well {
+  background-color: paleturquoise;
+}
+
+
+.panel-primary>.panelheading {
+  background-color: teal;
+  border-color: teal}
