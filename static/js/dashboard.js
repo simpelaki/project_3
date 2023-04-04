@@ -27,7 +27,7 @@ data.forEach(row => {
     "Rank": row.Ranking,
     "Air Quality": parseFloat(row.Air_Quality).toFixed(2),
     "Water Pollution": parseFloat(row.Water_Pollution).toFixed(2),
-    "Wifi Speed (Mbps)": row["Avg_WiFi_Speed(Mbps)"],
+    "Wifi Speed": row["Avg_WiFi_Speed(Mbps)"],
     
   });
 
@@ -37,7 +37,7 @@ data.forEach(row => {
   waterPollution.push(row.Water_Pollution);
   tripAdvisor.push(row["No.TripAdvisor_Attractions"]);
   ig.push(row["No.Instagram_#Photos"]);
-
+  
 });
 
 
@@ -77,7 +77,7 @@ function cityInfo(city) {
 
   let info = result[0];
 
-  let wifiSpeed = info["Wifi Speed (Mbps)"]
+  let wifiSpeed = info["Wifi Speed"]
 
   // Assign variable for selected element - city-info box
   let box = d3.select("#city-info");
@@ -130,7 +130,7 @@ function gauge(speed) {
         track: {
           background: '#fff',
           strokeWidth: '67%',
-          margin: 0, // margin is in pixels
+          margin: 0, 
           dropShadow: {
             enabled: true,
             top: -3,
@@ -150,7 +150,7 @@ function gauge(speed) {
           },
           value: {
             formatter: function (val) {
-              return parseInt(val);
+              return `${parseInt(val)} Mbps`;
             },
             color: '#111',
             fontSize: '36px',
@@ -198,6 +198,7 @@ var waterPollution10 = [];
 var tripAdvisor10 = [];
 var ig10 = [];
 
+
 // Iterate through data to extract only the cities that ranked up to 10
 data.slice(0,11).forEach(row =>{
   infoArray10.push(row);
@@ -213,8 +214,10 @@ infoArray10.forEach(row =>{
 
 });
 
+
 // Display array in console log to validate
 console.log(infoArray10);
+
 
 // Set traces 1-4 for bar chart
 var trace1 = {
