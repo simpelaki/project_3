@@ -20,3 +20,7 @@
   <li> Geopy</li>
   <li> ExchangeRate-API </li>
          
+<h2>Objectives:</h2>
+1. The top cities for workation based on expense versus amenities. Expenses include food, accommodation, taxi, drinks and coffee. Amenities include Wi-Fi, workspace, and climate.
+  <br>
+2. Best cities in terms of travel (tourist attractions and Instagrammability) vs work resources availability
