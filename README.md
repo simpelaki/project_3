@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Project_3: Best Cities for Workation
  This project analyzes the best cities for a workation. This is determined by comparing expenses and amenities across 148 cities.
 Data:
@@ -52,6 +53,5 @@ We used Jupyter notebook to analyze data. We analyzed total cost across cities.
  
 Room for improvement:
 - We can do statistical testing to prove the amenities in the top 10 cities are significantly different than the bottom 10 cities. Similar testing can be done with regards to expenses.
- 
  
  

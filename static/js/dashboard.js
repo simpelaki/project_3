@@ -269,6 +269,7 @@ Plotly.newPlot("bar", barData, barLayout);
 let bubbleLayout = {
   hovermode: "closest",
   xaxis: { title: "Cities" },
+  yaxis: { title: "Pollution Score (0-100)" },
   title: "Air Quality & Water Pollution",
   margin: { t: 50, l: 75, b: 125 }
 };
