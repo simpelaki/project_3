@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Project_3: Best Cities for Workation
  This project analyzes the best cities for a workation. This is determined by comparing expenses and amenities across 148 cities.
 Data:
