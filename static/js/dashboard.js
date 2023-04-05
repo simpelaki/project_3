@@ -25,9 +25,14 @@ data.forEach(row => {
     "City": row.City,
     "Country": row.Country,
     "Rank": row.Ranking,
+    "Wifi Speed (Mbps)": row["Avg_WiFi_Speed(Mbps)"],
+    "Rent": row["Avg_Rent_1BR($/mo)"],
+    "Co-Working Spaces": row["No._Co-working_Spaces"],
+    "Sunshine Hours": row["Avg_Sunshine(hr/yr)"],
+    "TripAdvisor Attractions": row["No.TripAdvisor_Attractions"],
+    "Instagram # Photos": row["No.Instagram_#Photos"],
     "Air Quality": parseFloat(row.Air_Quality).toFixed(2),
     "Water Pollution": parseFloat(row.Water_Pollution).toFixed(2),
-    "Wifi Speed (Mbps)": row["Avg_WiFi_Speed(Mbps)"],
     
   });
 
