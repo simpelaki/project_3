@@ -26,7 +26,11 @@ data.forEach(row => {
     "Country": row.Country,
     "Rank": row.Ranking,
     "Wifi Speed (Mbps)": row["Avg_WiFi_Speed(Mbps)"],
-    "Rent": row["Avg_Rent_1BR($/mo)"],
+    "Rent ($)": row["Avg_Rent_1BR($/mo)"],
+    "Coffee ($)": row["Avg_Coffee($)"],
+    "Taxi ($/km)": row["Avg_Taxi($/km)"],
+    "Beer ($/2)": row["Avg_Beer($/2)"],
+    "Restaurant ($)": row["Avg_Restaurant($)"],
     "Co-Working Spaces": row["No._Co-working_Spaces"],
     "Sunshine Hours": row["Avg_Sunshine(hr/yr)"],
     "TripAdvisor Attractions": row["No.TripAdvisor_Attractions"],
@@ -517,3 +521,4 @@ legend: {
 
 var chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
 chart2.render();
+
