@@ -1,5 +1,5 @@
 # Project_3: Best Cities for Workation
- This project analyzes the best cities for a workation. This is determined by comparing expenses and amenities across 148 cities.
+ This project analyzes the best cities for a workation. This is determined by comparing expenses and amenities across 147 cities.
 Data:
 The data was obtained from https://www.kaggle.com/datasets/prasertk/the-best-cities-for-a-workation?resource=download and https://www.kaggle.com/datasets/cityapiio/world-cities-air-quality-and-water-polution
  
@@ -18,7 +18,6 @@ JQuery
 ApexCharts
 Pandas
 Python
-MongoDB
 Geopy
 ExchangeRate-API
 
